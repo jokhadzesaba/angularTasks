@@ -1,0 +1,108 @@
+@mixin myBytton($width, $height, $background-color, $border-radius) {
+  width: $width;
+  height: $height;
+  background-color: $background-color;
+  border-radius: $border-radius;
+  color: white;
+  text-align: center;
+  border: none;
+  font-size: 11px;
+  cursor: pointer;
+}
+@mixin myInput($width, $height) {
+  width: $width;
+  height: $height;
+  border: #e5e2e3, 1px, solid;
+  border-radius: 5px;
+}
+.container {
+  padding: 60px;
+  height: 100%;
+  p {
+    font-size: 12.5px;
+    display: block;
+  }
+  > button {
+    @include myBytton(562px, 27px, #188754, 2px);
+    margin-bottom: 21px;
+  }
+  form {
+    > div {
+      > div {
+        width: 91.1%;
+        height: 41.9%;
+        background-color: #f6f2f1;
+        border-radius: 15px;
+        padding: 15px;
+        > button {
+          @include myBytton(274px, 27px, #dd3647, 2px);
+          margin-bottom: 10px;
+        }
+        > button:last-of-type {
+          @include myBytton(100.6%, 27px, #188754, 2px);
+          margin-bottom: 7px;
+        }
+        > div {
+          .error {
+            > p {
+              color: red;
+              font-size: 16px;
+            }
+          }
+          > .inside-container {
+            width: 100.7%;
+            height: 89%;
+            background-color: #dadde6;
+            border-radius: 10px;
+            padding: 14px;
+            padding-left: 14px;
+
+            .inputs {
+              input {
+                @include myInput(100%, 27px);
+              }
+            }
+            .inputs-textarea {
+              textarea {
+                @include myInput(100%, 42px);
+              }
+            }
+            > button {
+              @include myBytton(267px, 27px, #dd3647, 2px);
+              margin-bottom: 12px;
+            }
+            .inputs-textarea {
+              margin-bottom: 13px;
+            }
+            .date {
+              display: flex;
+              justify-content: space-between;
+              div {
+                > input {
+                  @include myInput(445px, 26px);
+                }
+                ::placeholder {
+                  font-size: 12px;
+                  padding-left: 6px;
+                }
+              }
+            }
+
+          }
+        }
+      }
+      .inputs {
+        margin-bottom: 13px;
+        input {
+          @include myInput(100.6%, 27px);
+        }
+      }
+      .inputs-textarea {
+        margin-bottom: 8px;
+        textarea {
+          @include myInput(100.6%, 42px);
+        }
+      }
+    }
+  }
+}

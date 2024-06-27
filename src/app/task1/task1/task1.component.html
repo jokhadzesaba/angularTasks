@@ -1,0 +1,58 @@
+<div class="container">
+  <button type="button" (click)="addJob()">Add Job</button>
+  <form [formGroup]="form">
+    <div formArrayName="jobs">
+      <div class="job" *ngFor="let job of jobsFormArray.controls; let jobIndex = index" [formGroupName]="jobIndex">
+        <button type="button" (click)="removeJob(jobIndex)">Remove Job</button>
+        <div class="inputs">
+          <p>Enter company name</p>
+          <form>
+            <app-costum-form-control class="costumForm" name="first" [(ngModel)]="costumValue" placeholder="Enter value"></app-costum-form-control>
+          </form>
+        </div>
+        <div class="inputs">
+          <p>Enter company web page</p>
+          <input formControlName="companyWebPage" type="text" />
+        </div>
+        <div class="inputs-textarea">
+          <p>Enter company description</p>
+          <textarea formControlName="companyDescription"></textarea>
+        </div>
+        <button type="button" (click)="addPositionForm(jobIndex)">Add Position</button>
+        <div formArrayName="positions">
+          <div *ngFor="let position of getPositions(jobIndex).controls; let positionIndex = index" [formGroupName]="positionIndex" class="inside-container">
+            <button type="button" (click)="removePosition(jobIndex, positionIndex)">Remove Position</button>
+            <div class="inputs">
+              <p>Enter position name</p>
+              <input formControlName="positionName" type="text" />
+            </div>
+            <div class="inputs">
+              <p>Enter position level</p>
+              <input formControlName="positionLevel" type="text" />
+              <div *ngIf="position.errors?.['positionValidator']" class="error">
+                <p>Position must be Junior/Middle/Senior</p>
+              </div>
+            </div>
+            <div class="inputs-textarea">
+              <p>Enter position description</p>
+              <textarea formControlName="positionDescription"></textarea>
+            </div>
+            <div class="date">
+              <div>
+                <p>From</p>
+                <input formControlName="fromDate" type="date" placeholder="mm/dd/yyyy" />
+              </div>
+              <div>
+                <p>To</p>
+                <input formControlName="toDate" type="date" placeholder="mm/dd/yyyy" />
+              </div>
+            </div>
+            <div *ngIf="position.errors?.['dateRangeInvalid']" class="error">
+              <p>To date must be after from date.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
