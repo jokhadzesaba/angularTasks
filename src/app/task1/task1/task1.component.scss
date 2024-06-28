@@ -1,20 +1,4 @@
-@mixin myBytton($width, $height, $background-color, $border-radius) {
-  width: $width;
-  height: $height;
-  background-color: $background-color;
-  border-radius: $border-radius;
-  color: white;
-  text-align: center;
-  border: none;
-  font-size: 11px;
-  cursor: pointer;
-}
-@mixin myInput($width, $height) {
-  width: $width;
-  height: $height;
-  border: #e5e2e3, 1px, solid;
-  border-radius: 5px;
-}
+@import 'src/styles/style.scss';
 .container {
   padding: 60px;
   height: 100%;

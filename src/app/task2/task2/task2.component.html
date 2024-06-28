@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="search">
+    <input (keydown.enter)="getMovies(title)" placeholder="title" type="text" [(ngModel)]="title" />
+    <button (click)="getMovies(title)">Search</button>
+  </div>
+  <div class="movies-series">
+    <div *ngFor="let i of moviesAndSeries">
+      <div class="img-placeholder">
+        <img [src]="i.image?.url" [alt]="i.title" />
+      </div>
+      <div class="details">
+        <p>{{ i.title }}</p>
+        <div>
+          <p *ngIf="i.season">Season{{ i.season }}</p>
+          <p *ngIf="i.episode">episode: {{ i.episode }}</p>
+        </div>
+        <p [appHighlight]="i.titleType" >Type:{{ i.titleType | stringFormat }}</p>
+        <p>Year:{{ i.year }}</p>
+      </div>
+    </div>
+  </div>
+</div>
