@@ -1,0 +1,19 @@
+@import "src/styles/style.scss";
+
+div {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  input {
+    @include myInput(250px, 25px);
+    border: 1px solid black;
+  }
+  p{
+    font-size: 18px;
+    color: red;
+  }
+}

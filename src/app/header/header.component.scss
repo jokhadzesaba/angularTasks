@@ -1,0 +1,18 @@
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1px;
+  > div {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    > button {
+      width: 150px;
+      height: 30px;
+      background-color: lightseagreen;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
