@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="grid-container">
+    <div>
+      <div>
+        <span (click)="changeMonth('down')">&lt;</span>
+        <p>{{ getMonthName() }} {{ year }}</p>
+        <span (click)="changeMonth('up')">></span>
+      </div>
+    </div>
+    <div class="weekdays" *ngFor="let i of weekdays">{{ i }}</div>
+    <div
+      *ngFor="let day of getCalendar(year, monthIndex);let i = index"
+      directive
+      [currentIndex]="i"
+      [monthStartIndex]="currentMonthStartIndex"
+      [monthEndIndex]="currentMonthEndIndex"
+      [currentMonthIndex]="monthIndex"
+      [currentDay]="day"
+
+    >
+    {{ day }}
+    </div>
+  </div>
+</div>
