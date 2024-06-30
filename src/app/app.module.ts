@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { RouterOutlet } from '@angular/router';
 import { Task4Module } from './task4/task4.module';
 import { Task5Component } from './task5/task5.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { Task5Component } from './task5/task5.component';
     BrowserModule,
     AppRoutingModule,
     RouterOutlet,
+    FormsModule,
     Task1Module,
     Task2Module,
     Task3Module,

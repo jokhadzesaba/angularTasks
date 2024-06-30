@@ -1,0 +1,15 @@
+@import "../../styles/style.scss";
+.task5-container {
+  width: 300px;
+  margin: 150px;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  input {
+    @include myInput(200px, 30px);
+    margin-bottom: 10px;
+  }
+}

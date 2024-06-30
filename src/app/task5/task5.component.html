@@ -1,4 +1,13 @@
-<div *ngFor="let item of value2">
-    {{ item }}: {{ calculatePercentageMatch(item) }}%
-  </div>
-  
+<div class="task5-container">
+  <label for="value1Input">Enter Value 1:</label>
+  <input id="value1Input" type="text" [(ngModel)]="value1">
+
+  <ul class="value-list">
+    <li *ngFor="let value of value2" class="value-item">
+      <span>{{ value }}</span> - Similarity: {{ calculateSimilarity(value1, value) }}%
+    </li>
+  </ul>
+
+  <label for="value2Input">Enter Value 2 (comma-separated):</label>
+  <input id="value2Input" type="text" #value2Input (change)="updateValue2(value2Input.value)">
+</div>

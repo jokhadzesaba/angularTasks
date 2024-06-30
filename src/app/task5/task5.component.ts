@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-task5',
@@ -6,31 +6,46 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./task5.component.scss'],
 })
 export class Task5Component {
-  @Input() value1?: string;
-  @Input() value2?: string[];
+  value1: string = '';
+  value2: string[] = [];
 
-  calculatePercentageMatch(item: string): number {
-    if (this.value1 && item) {
-      const lcsLength = this.longestCommonSubsequence(this.value1.toLowerCase(), item.toLowerCase());
-      const maxLength = Math.max(this.value1.length, item.length);
-      return (lcsLength / maxLength) * 100;
+  constructor() {}
+  
+
+  updateValue2(value: string): void {
+    this.value2 = value.split(',').map(item => item.trim());
+  }
+  calculateLevenshteinDistance(s1: string, s2: string): number {
+    if (s1.length < s2.length) {
+      [s1, s2] = [s2, s1];
     }
-    return 0;
+
+    if (s2.length === 0) {
+      return s1.length;
+    }
+
+    let previousRow = Array.from({ length: s2.length + 1 }, (_, i) => i);
+    for (let i = 0; i < s1.length; i++) {
+      let currentRow = [i + 1];
+      for (let j = 0; j < s2.length; j++) {
+        const insertions = previousRow[j + 1] + 1;
+        const deletions = currentRow[j] + 1;
+        const substitutions = previousRow[j] + (s1[i] !== s2[j] ? 1 : 0);
+        currentRow.push(Math.min(insertions, deletions, substitutions));
+      }
+      previousRow = currentRow;
+    }
+
+    return previousRow[previousRow.length - 1];
   }
 
-  private longestCommonSubsequence(s1: string, s2: string): number {
-    const num: number[][] = Array.from({ length: s1.length + 1 }, () => Array(s2.length + 1).fill(0));
+  calculateSimilarityPercentage(s1: string, s2: string): number {
+    const levDistance = this.calculateLevenshteinDistance(s1, s2);
+    const maxLength = Math.max(s1.length, s2.length);
+    return ((1 - levDistance / maxLength) * 100);
+  }
 
-    for (let i = 1; i <= s1.length; i++) {
-      for (let j = 1; j <= s2.length; j++) {
-        if (s1[i - 1] === s2[j - 1]) {
-          num[i][j] = num[i - 1][j - 1] + 1;
-        } else {
-          num[i][j] = Math.max(num[i - 1][j], num[i][j - 1]);
-        }
-      }
-    }
-
-    return num[s1.length][s2.length];
+  calculateSimilarity(s1: string, s2: string): number {
+    return this.calculateSimilarityPercentage(s1, s2);
   }
 }
