@@ -9,10 +9,12 @@ import { Task3Module } from './task3/task3.module';
 import { HeaderComponent } from './header/header.component';
 import { RouterOutlet } from '@angular/router';
 import { Task4Module } from './task4/task4.module';
+import { Task5Component } from './task5/task5.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Task5Component
   ],
   imports: [
     HeaderComponent,

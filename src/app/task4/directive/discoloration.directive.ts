@@ -9,7 +9,8 @@ export class DiscolorationDirective implements OnChanges {
   @Input() monthEndIndex?: number;
   @Input() currentMonthIndex?: number;
   @Input() currentDay?: number;
-  
+  public month = new Date().getMonth()
+  public dayOfmonth = new Date().getDate();
   public holidays = [
     { month: 1, day: 1, name: 'New Year\'s Day' },
     { month: 2, day: 14, name: 'Valentine\'s Day' },
@@ -48,8 +49,11 @@ export class DiscolorationDirective implements OnChanges {
         if (isHoliday) {
           this.el.nativeElement.style.backgroundColor = '#D45555';
         } else {
-          this.el.nativeElement.style.backgroundColor = ''; // Reset background color if not a holiday
+          this.el.nativeElement.style.backgroundColor = '';
         }
+      }
+      if(this.currentDay === this.dayOfmonth && this.currentMonthIndex === this.month){
+        this.el.nativeElement.style.backgroundColor = 'lightgreen';
       }
     }
   }

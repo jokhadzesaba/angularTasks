@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Task5Component } from './task5/task5.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./task4/task4.module').then((m) => m.Task4Module),
   },
+  {path:'task5',component:Task5Component}
 ];
 
 @NgModule({

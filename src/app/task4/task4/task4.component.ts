@@ -14,6 +14,7 @@ import {
 export class Task4Component implements OnInit {
   public year: number = new Date().getFullYear();
   public monthIndex = new Date().getMonth();
+  public currentDay = new Date().getDate();
   public monthName?: string;
   public currentMonthStartIndex?: number;
   public currentMonthEndIndex?: number;
